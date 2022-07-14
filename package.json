@@ -24,17 +24,15 @@
     ]
   },
   "scripts": {
-    "dev": "tsup --watch --sourcemap",
+    "dev": "esno ./src/index.ts",
     "build": "tsup",
     "test:dev": "vitest",
     "test": "vitest run",
     "lint": "eslint \"**/*.{js,ts,md,json,yml}\"",
-    "release": "bump --commit --push --tag && pnpm publish",
     "reset": "rimraf ./node_modules && pnpm install",
     "prepare": "husky install"
   },
   "devDependencies": {
-    "@jsdevtools/version-bump-prompt": "^6.1.0",
     "@types/node": "^16.10.2",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
@@ -49,7 +47,7 @@
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "rimraf": "^3.0.2",
-    "tsup": "^5.2.1",
+    "tsup": "^6.1.3",
     "typescript": "^4.4.3",
     "vitest": "^0.1.13"
   }

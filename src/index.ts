@@ -1,1 +1,1 @@
-export default () => console.log('Welcome to use this template!')
+console.log('Welcome to use this template!')
