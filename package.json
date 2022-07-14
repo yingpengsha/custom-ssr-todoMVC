@@ -26,8 +26,8 @@
   "scripts": {
     "dev": "esno ./src/index.ts",
     "build": "tsup",
-    "test:dev": "vitest",
-    "test": "vitest run",
+    "test:dev": "vitest --passWithNoTests",
+    "test": "vitest run --passWithNoTests",
     "lint": "eslint \"**/*.{js,ts,md,json,yml}\"",
     "reset": "rimraf ./node_modules && pnpm install",
     "prepare": "husky install"
