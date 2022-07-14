@@ -1,10 +1,10 @@
 {
-  "name": "ts-lib-template",
+  "name": "custom-ssr-todoMVC",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Pengsha Ying <yingfusheng@foxmail.com>",
   "description": "😎 Awesome typescript library template",
-  "repository": "git@github.com:yingpengsha/ts-lib-template.git",
+  "repository": "git@github.com:yingpengsha/custom-ssr-todoMVC.git",
   "publishConfig": {
     "access": "public"
   },
