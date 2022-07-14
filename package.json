@@ -1,22 +1,9 @@
 {
   "name": "custom-ssr-todomvc",
-  "version": "0.0.1",
+  "private": "true",
   "license": "MIT",
   "author": "Pengsha Ying <yingfusheng@foxmail.com>",
   "repository": "git@github.com:yingpengsha/custom-ssr-todoMVC.git",
-  "publishConfig": {
-    "access": "public"
-  },
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    "require": "./dist/index.js",
-    "import": "./dist/index.mjs"
-  },
   "lint-staged": {
     "*.{js,ts,md,json,yml}": [
       "eslint --fix"
