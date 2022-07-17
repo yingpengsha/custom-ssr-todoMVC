@@ -1,0 +1,10 @@
+<% todoList.forEach(function(todo){ %>
+<li <% if (todo.isDone) { %> class="completed" <% } %>>
+  <div class="view">
+    <input class="toggle" type="checkbox" <% if (todo.isDone) { %> checked <% } %>>
+    <label><%= todo.name %></label>
+    <button class="destroy"></button>
+  </div>
+  <input class="edit" value="<%= todo.name %>">
+</li>
+<% }) %>

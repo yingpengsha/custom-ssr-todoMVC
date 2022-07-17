@@ -1,0 +1,14 @@
+{
+  "todoList": [
+    {
+      "id": "1",
+      "name": "Taste JavaScript",
+      "isDone": true
+    },
+    {
+      "id": "2",
+      "name": "Buy a unicorn",
+      "isDone": false
+    }
+  ]
+}
