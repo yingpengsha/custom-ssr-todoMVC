@@ -1,18 +1,26 @@
-import { readFile, writeFile } from 'jsonfile'
-import path from 'path'
-
 export interface TodoItem {
   id: string
   name: string
   isDone: boolean
 }
 
-const filePath = path.join(__dirname, './database.json')
-const write = async (todoList: TodoItem[]) => writeFile(filePath, { todoList })
-const read = async (): Promise<TodoItem[]> => {
-  const fileContent = await readFile(filePath)
-  return fileContent.todoList
+const data = {
+  todoList: [
+    {
+      id: '1',
+      name: 'Taste JavaScript',
+      isDone: true
+    },
+    {
+      id: '2',
+      name: 'Buy a unicorn',
+      isDone: false
+    }
+  ]
 }
+
+const write = async (todoList: TodoItem[]) => { data.todoList = todoList }
+const read = async (): Promise<TodoItem[]> => data.todoList
 
 export default class TodoModel {
   async getAll () {
