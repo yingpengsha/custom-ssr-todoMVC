@@ -1,10 +1,21 @@
 <% todoList.forEach(function(todo){ %>
 <li <% if (todo.isDone) { %> class="completed" <% } %>>
   <div class="view">
-    <input class="toggle" type="checkbox" <% if (todo.isDone) { %> checked <% } %>>
+    <form action="/toggle" method="post">
+      <input name="id" class="hidden" value="<%= todo.id %>" />
+      <input class="toggle" type="checkbox" onchange="this.form.submit()" <% if (todo.isDone) { %> checked <% } %>>
+    </form>
+    <%# for style %>
+    <input class="toggle hidden" type="checkbox" <% if (todo.isDone) { %> checked <% } %>>
     <label><%= todo.name %></label>
-    <button class="destroy"></button>
+    <form action="/remove" method="post">
+      <input name="id" class="hidden" value="<%= todo.id %>" />
+      <button type="submit" class="destroy"></button>
+    </form>
   </div>
-  <input class="edit" value="<%= todo.name %>">
+  <form action="/rename" method="post">
+    <input type="hidden" name="id" value="<%= todo.id %>" />
+    <input name="name" class="edit" onblur="clearEditMode(event)" value="<%= todo.name %>">
+  </form>
 </li>
 <% }) %>

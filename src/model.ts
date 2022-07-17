@@ -15,7 +15,7 @@ const read = async (): Promise<TodoItem[]> => {
 }
 
 export default class TodoModel {
-  getAll () {
+  async getAll () {
     return read()
   }
 
@@ -27,8 +27,16 @@ export default class TodoModel {
     return (await read()).filter(item => item.isDone)
   }
 
-  async add (item: TodoItem) {
-    const content = (await read()).concat(item)
+  async getLeftCount () {
+    return (await this.getActive()).length
+  }
+
+  async add (name: string) {
+    const content = (await read()).concat({
+      id: Date.now() + '',
+      name,
+      isDone: false
+    })
     write(content)
     return content
   }
@@ -37,6 +45,14 @@ export default class TodoModel {
     const content = await read()
     const idx = content.findIndex(item => item.id === id)
     content.splice(idx, 1)
+    write(content)
+    return content[idx]
+  }
+
+  async rename (id: string, name: string) {
+    const content = await read()
+    const idx = content.findIndex(item => item.id === id)
+    content[idx].name = name
     write(content)
     return content[idx]
   }
