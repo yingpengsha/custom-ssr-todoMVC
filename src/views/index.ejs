@@ -5,8 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TodoMVC</title>
-  <link rel="stylesheet" href="/node_modules/todomvc-common/base.css">
-  <link rel="stylesheet" href="/node_modules/todomvc-app-css/index.css">
+  <!-- <link rel="stylesheet" href="/node_modules/todomvc-common/base.css">
+  <link rel="stylesheet" href="/node_modules/todomvc-app-css/index.css"> -->
+  <style>
+    <%- include('css/base.css') %>
+    <%- include('css/index.css') %>
+  </style>
 </head>
 
 <body>
@@ -51,7 +55,10 @@
     <p>Double-click to edit a todo</p>
     <p>Created by <a href="http://github.com/yingpengsha">Pengsha Ying</a></p>
   </footer>
-  <script src="/src/scripts/EditModeToggle.js"></script>
+  <!-- <script src="/src/scripts/EditModeToggle.js"></script> -->
+  <script>
+    <%- include('scripts/EditModeToggle.js') %>
+  </script>
 </body>
 
 </html>
