@@ -42,7 +42,7 @@
         </li>
       </ul>
       <!-- Hidden if no completed items are left ↓ -->
-      <form action="/clear" method="post">
+      <form action="/clear" method="post" <% if (leftCount === 0) { %> class="hidden" <% } %>>
         <button type="submit" class="clear-completed">Clear completed</button>
       </form>
     </footer>
