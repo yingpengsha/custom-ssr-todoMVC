@@ -1,9 +1,15 @@
 {
-  "functions": {
-    "src/index.ts": {
-      "runtime": "@vercel/node@2.4.4"
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@vercel/node"
     }
-  },
-  "public": true,
-  "trailingSlash": true
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.ts"
+    }
+  ]
 }
