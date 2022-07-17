@@ -1,5 +1,6 @@
 /**
  * @param {Element} dom
+ * @param {tagName} string
  * @returns {Element}
  */
 const getDomFromParentElementsByTagName = (dom, tagName) => {

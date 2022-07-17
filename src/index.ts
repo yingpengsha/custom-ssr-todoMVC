@@ -7,14 +7,12 @@ import bodyParser from 'koa-body'
 import fileServe from 'koa-static'
 
 import TodoModel from './model'
-import { assert } from 'console'
 
 const Todo = new TodoModel()
 
 const server = new Koa()
 const router = new Router()
 
-server.use(fileServe('.'))
 server.use(async (ctx, next) => {
   try {
     await next()
@@ -33,43 +31,31 @@ render(server, {
   debug: true
 })
 
-router.get('/', async (ctx) => {
-  await ctx.render('main', { path: ctx.path, todoList: await Todo.getAll(), leftCount: await Todo.getLeftCount() })
-})
-router.get('/active', async (ctx) => {
-  await ctx.render('main', { path: ctx.path, todoList: await Todo.getActive(), leftCount: await Todo.getLeftCount() })
-})
-router.get('/completed', async (ctx) => {
-  await ctx.render('main', { path: ctx.path, todoList: await Todo.getCompleted(), leftCount: await Todo.getLeftCount() })
+router.redirect('/', '/all')
+router.get('/:category', async (ctx) => {
+  const { category } = ctx.params
+  const methodName = `get${category[0].toUpperCase() + category.slice(1)}` as keyof TodoModel
+  if (Todo?.[methodName]) {
+    await ctx.render('main', {
+      path: ctx.path,
+      // @ts-ignore
+      todoList: await Todo[methodName](),
+      leftCount: await Todo.getLeftCount()
+    })
+  }
 })
 
-router.post('/add', async (ctx) => {
-  assert(ctx.request.body.name)
-  await Todo.add(ctx.request.body.name)
-  ctx.redirect('back')
-})
-router.post('/remove', async (ctx) => {
-  assert(ctx.request.body.id)
-  await Todo.remove(ctx.request.body.id)
-  ctx.redirect('back')
-})
-router.post('/toggle', async (ctx) => {
-  assert(ctx.request.body.id)
-  await Todo.toggle(ctx.request.body.id)
-  ctx.redirect('back')
-})
-router.post('/rename', async (ctx) => {
-  assert(ctx.request.body.id && ctx.request.body.name)
-  await Todo.rename(ctx.request.body.id, ctx.request.body.name)
-  ctx.redirect('back')
-})
-router.post('/clear', async (ctx) => {
-  await Todo.clear()
-  ctx.redirect('back')
+router.post('/:methodName', async (ctx) => {
+  const methodName = ctx.params.methodName as keyof TodoModel
+  if (Todo?.[methodName]) {
+    await Todo[methodName](ctx.request.body)
+    ctx.redirect('back')
+  }
 })
 
 server
   .use(logger())
+  .use(fileServe('.'))
   .use(bodyParser({ multipart: true }))
   .use(router.routes())
   .use(router.allowedMethods())

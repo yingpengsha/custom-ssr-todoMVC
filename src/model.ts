@@ -31,7 +31,8 @@ export default class TodoModel {
     return (await this.getActive()).length
   }
 
-  async add (name: string) {
+  async add (params: {name: string}) {
+    const { name } = params
     const content = (await read()).concat({
       id: Date.now() + '',
       name,
@@ -41,7 +42,8 @@ export default class TodoModel {
     return content
   }
 
-  async remove (id: string) {
+  async remove (params: {id: string}) {
+    const { id } = params
     const content = await read()
     const idx = content.findIndex(item => item.id === id)
     content.splice(idx, 1)
@@ -49,7 +51,8 @@ export default class TodoModel {
     return content[idx]
   }
 
-  async rename (id: string, name: string) {
+  async rename (params: {id: string, name: string}) {
+    const { id, name } = params
     const content = await read()
     const idx = content.findIndex(item => item.id === id)
     content[idx].name = name
@@ -57,7 +60,8 @@ export default class TodoModel {
     return content[idx]
   }
 
-  async toggle (id: string) {
+  async toggle (params: {id: string}) {
+    const { id } = params
     const content = await read()
     const idx = content.findIndex(item => item.id === id)
     content[idx].isDone = !content[idx].isDone
