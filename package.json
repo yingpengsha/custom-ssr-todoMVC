@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "tsx watch ./src/index.ts",
+    "vercel-build": "tsx watch ./src/index.ts",
     "build": "tsup",
     "test:dev": "vitest --passWithNoTests",
     "test": "vitest run --passWithNoTests",
