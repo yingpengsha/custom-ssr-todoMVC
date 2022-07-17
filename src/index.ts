@@ -76,3 +76,5 @@ server
   .listen(3000, '0.0.0.0', () =>
     console.log('listening on http://localhost:3000 ...')
   )
+
+export default server
