@@ -11,6 +11,9 @@
     "checkJs": false,
     "resolveJsonModule": true,
     "types": ["node"],
+    "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "h",
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]

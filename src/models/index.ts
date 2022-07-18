@@ -14,7 +14,7 @@ const read = async (): Promise<TodoItem[]> => {
   return fileContent.todoList
 }
 
-export default class TodoModel {
+export class TodoModel {
   async getAll () {
     return read()
   }
@@ -73,3 +73,5 @@ export default class TodoModel {
     return write([])
   }
 }
+
+export default new TodoModel()

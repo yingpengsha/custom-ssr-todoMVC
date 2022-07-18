@@ -1,14 +1,11 @@
 import Koa from 'koa'
-import path from 'path'
-import render from 'koa-ejs'
 import Router from 'koa-router'
 import logger from 'koa-logger'
 import bodyParser from 'koa-body'
 import fileServe from 'koa-static'
 
-import TodoModel from './model'
-
-const Todo = new TodoModel()
+import Todo, { TodoModel } from '@/models'
+import TodoView from '@/views'
 
 const server = new Koa()
 const router = new Router()
@@ -23,20 +20,12 @@ server.use(async (ctx, next) => {
   }
 })
 
-render(server, {
-  root: path.join(__dirname, 'views'),
-  layout: 'index',
-  viewExt: 'ejs',
-  cache: false,
-  debug: true
-})
-
 router.redirect('/', '/all')
 router.get('/:category', async (ctx) => {
   const { category } = ctx.params
   const methodName = `get${category[0].toUpperCase() + category.slice(1)}` as keyof TodoModel
   if (Todo?.[methodName]) {
-    await ctx.render('main', {
+    ctx.body = TodoView({
       path: ctx.path,
       // @ts-ignore
       todoList: await Todo[methodName](),
