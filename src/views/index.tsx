@@ -1,14 +1,18 @@
 import h from 'vhtml'
-import { TodoItem } from '@/model'
+import { PageEntry } from '@/core'
+import Todo, { TodoModel } from '@/models'
+
 import Layout from './Layout'
 import TodoList from './TodoList'
 
-const TodoView = (props: {
-  path: string
-  leftCount: number,
-  todoList: TodoItem[]
-}) => {
-  const { path, leftCount, todoList } = props
+const TodoView: PageEntry = async ({ ctx }) => {
+  const { path } = ctx
+
+  const methodName = `get${path[1].toUpperCase() + path.slice(2)}` as keyof TodoModel
+  const leftCount = await Todo.getLeftCount()
+  // @ts-ignore
+  const todoList: TodoItem[] = await Todo[methodName]()
+
   return <Layout>
     <body>
       <section class="todoapp">
@@ -45,7 +49,7 @@ const TodoView = (props: {
         <p>Double-click to edit a todo</p>
         <p>Created by <a href="http://github.com/yingpengsha">Pengsha Ying</a></p>
       </footer>
-      <script src="/src/scripts/EditModeToggle.js"></script>
+      <script src="/static/scripts/EditModeToggle.js"></script>
     </body>
   </Layout>
 }

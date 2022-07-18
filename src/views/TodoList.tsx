@@ -1,5 +1,5 @@
 import h from 'vhtml'
-import { TodoItem } from '@/model'
+import { TodoItem } from '@/models'
 
 const TodoList = (props: {
   todoList: TodoItem[]
