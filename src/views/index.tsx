@@ -2,7 +2,7 @@ import h from 'vhtml'
 import Form from 'core/Form'
 import { PageEntry } from 'core'
 import { ServerEvent } from 'core/EventRegistry'
-import Todo, { TodoModel, TodoItem } from 'models'
+import Todo, { TodoItem } from 'models'
 
 import Layout from './Layout'
 import TodoList from './TodoList'
@@ -18,12 +18,21 @@ const ClearCompleted: ServerEvent = async () => {
 const TodoView: PageEntry = async ({ ctx }) => {
   const { path } = ctx
 
-  const methodName = `get${path[1].toUpperCase() + path.slice(2)}` as keyof TodoModel
+  // ======================== leftCount ========================
   const leftCount = await Todo.getLeftCount()
-  const todoList: TodoItem[] = (Todo[methodName] && Todo[methodName].length === 0)
-    // @ts-ignore
-    ? await Todo[methodName]() as TodoItem[]
-    : []
+
+  // ======================== todoList ========================
+  let todoList: TodoItem[] = []
+  switch (path) {
+    case '/all':
+      todoList = await Todo.getAll()
+      break
+    case '/active':
+      todoList = await Todo.getActive()
+      break
+    case '/completed':
+      todoList = await Todo.getCompleted()
+  }
 
   return <Layout>
     <body>
@@ -42,15 +51,10 @@ const TodoView: PageEntry = async ({ ctx }) => {
         <footer class="footer">
           <span class="todo-count"><strong>{leftCount.toString()}</strong> item left</span>
           <ul class="filters">
-            <li>
-              <a class={path === '/all' ? 'selected' : ''} href="/">All</a>
-            </li>
-            <li>
-              <a class={path === '/active' ? 'selected' : ''} href="/active">Active</a>
-            </li>
-            <li>
-              <a class={path === '/completed' ? 'selected' : ''} href="/completed">Completed</a>
-            </li>
+            {['all', 'active', 'completed'].map(key =>
+              <li>
+                <a class={path === `/${key}` ? 'selected' : ''} href="/">{key[0].toUpperCase() + key.slice(1)}</a>
+              </li>)}
           </ul>
           <Form method="post" submit={ClearCompleted} class={leftCount === 0 ? 'hidden' : ''}>
             <button type={'submit' as const} class="clear-completed">Clear completed</button>
@@ -61,7 +65,6 @@ const TodoView: PageEntry = async ({ ctx }) => {
         <p>Double-click to edit a todo</p>
         <p>Created by <a href="http://github.com/yingpengsha">Pengsha Ying</a></p>
       </footer>
-      <script src="/static/scripts/EditModeToggle.js"></script>
     </body>
   </Layout>
 }

@@ -12,6 +12,7 @@ const Layout = (props: { children: any[] }) => {
       <link rel="stylesheet" href="/static/css/index.css" />
     </head>
     {children}
+    <script src="/static/scripts/EditModeToggle.js"></script>
   </html>
 }
 
