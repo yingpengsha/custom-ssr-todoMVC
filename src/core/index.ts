@@ -3,7 +3,7 @@ import Router from 'koa-router'
 import logger from 'koa-logger'
 import bodyParser from 'koa-body'
 import fileServe from 'koa-static'
-import Todo, { TodoModel } from '@/models'
+import EventRegistry from './EventRegistry'
 
 export interface PageEntry {
   (props: {ctx: Koa.ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>} & { children?: any[] }): string | Promise<string>
@@ -45,10 +45,11 @@ export default function createApp (routes: Route[], options?: Options) {
     next()
   })
 
-  router.post('/:methodName', async (ctx) => {
-    const methodName = ctx.params.methodName as keyof TodoModel
-    if (Todo?.[methodName]) {
-      await Todo[methodName](ctx.request.body)
+  // ======================== post loader ========================
+  router.post('/(.*)', async (ctx) => {
+    const postService = EventRegistry.events[`post:${ctx.path}`]
+    if (postService) {
+      await postService(ctx)
       ctx.redirect('back')
     }
   })

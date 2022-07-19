@@ -10,7 +10,7 @@
     "allowJs": true,
     "checkJs": true,
     "resolveJsonModule": true,
-    "types": ["node", "vhtml"],
+    "types": ["node"],
     "jsx": "preserve",
     "jsxFactory": "h",
     "jsxFragmentFactory": "h",

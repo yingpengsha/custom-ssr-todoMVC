@@ -1,6 +1,6 @@
 import h from 'vhtml'
 
-const Layout = (props: {children: any[]}) => {
+const Layout = (props: { children: any[] }) => {
   const { children } = props
   return <html lang="en">
     <head>

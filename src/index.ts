@@ -1,5 +1,5 @@
-import createApp from '@/core'
-import TodoView from '@/views'
+import createApp from 'core'
+import TodoView from 'views'
 
 createApp([
   {
