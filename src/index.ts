@@ -1,53 +1,21 @@
-import Koa from 'koa'
-import Router from 'koa-router'
-import logger from 'koa-logger'
-import bodyParser from 'koa-body'
-import fileServe from 'koa-static'
+import createApp from 'core'
+import TodoView from 'views'
 
-import Todo, { TodoModel } from '@/models'
-import TodoView from '@/views'
-
-const server = new Koa()
-const router = new Router()
-
-server.use(async (ctx, next) => {
-  try {
-    await next()
-  } catch (err) {
-    ctx.status = 400
-    ctx.err = err
-    ctx.body = `ErrorHandler: ${err instanceof Error ? err.message : 'unknown Error'}`
+createApp([
+  {
+    path: '/',
+    redirect: '/all'
+  },
+  {
+    path: '/all',
+    component: TodoView
+  },
+  {
+    path: '/active',
+    component: TodoView
+  },
+  {
+    path: '/completed',
+    component: TodoView
   }
-})
-
-router.redirect('/', '/all')
-router.get('/:category', async (ctx) => {
-  const { category } = ctx.params
-  const methodName = `get${category[0].toUpperCase() + category.slice(1)}` as keyof TodoModel
-  if (Todo?.[methodName]) {
-    ctx.body = TodoView({
-      path: ctx.path,
-      // @ts-ignore
-      todoList: await Todo[methodName](),
-      leftCount: await Todo.getLeftCount()
-    })
-  }
-})
-
-router.post('/:methodName', async (ctx) => {
-  const methodName = ctx.params.methodName as keyof TodoModel
-  if (Todo?.[methodName]) {
-    await Todo[methodName](ctx.request.body)
-    ctx.redirect('back')
-  }
-})
-
-server
-  .use(logger())
-  .use(fileServe('.'))
-  .use(bodyParser({ multipart: true }))
-  .use(router.routes())
-  .use(router.allowedMethods())
-  .listen(3000, '0.0.0.0', () =>
-    console.log('listening on http://localhost:3000 ...')
-  )
+])

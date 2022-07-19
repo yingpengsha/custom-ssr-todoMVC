@@ -1,6 +1,6 @@
 import h from 'vhtml'
 
-const Layout = (props: {children: any[]}) => {
+const Layout = (props: { children: any[] }) => {
   const { children } = props
   return <html lang="en">
     <head>
@@ -9,7 +9,7 @@ const Layout = (props: {children: any[]}) => {
       <title>TodoMVC</title>
       <link rel="stylesheet" href="/node_modules/todomvc-common/base.css" />
       <link rel="stylesheet" href="/node_modules/todomvc-app-css/index.css" />
-      <link rel="stylesheet" href="/src/css/index.css" />
+      <link rel="stylesheet" href="/static/css/index.css" />
     </head>
     {children}
   </html>

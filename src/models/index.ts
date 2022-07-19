@@ -1,5 +1,5 @@
-import { readFile, writeFile } from 'jsonfile'
 import path from 'path'
+import { readFile, writeFile } from 'jsonfile'
 
 export interface TodoItem {
   id: string

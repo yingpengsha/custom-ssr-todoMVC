@@ -8,13 +8,13 @@
     "noUnusedLocals": true,
     "noImplicitAny": true,
     "allowJs": true,
-    "checkJs": false,
+    "checkJs": true,
     "resolveJsonModule": true,
     "types": ["node"],
     "jsx": "preserve",
     "jsxFactory": "h",
     "jsxFragmentFactory": "h",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["src/*"]
     }
