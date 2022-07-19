@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  '@types/glob-to-regexp': ^0.4.1
   '@types/jsonfile': ^6.1.0
   '@types/koa': ^2.13.5
   '@types/koa-logger': ^3.1.2
@@ -18,6 +19,7 @@ specifiers:
   eslint-plugin-markdown: ^2.2.1
   eslint-plugin-node: ^11.1.0
   eslint-plugin-promise: ^5.1.0
+  glob-to-regexp: ^0.4.1
   husky: ^7.0.2
   jsonfile: ^6.1.0
   koa: ^2.13.4
@@ -35,6 +37,7 @@ specifiers:
   vitest: ^0.1.13
 
 dependencies:
+  glob-to-regexp: 0.4.1
   jsonfile: 6.1.0
   koa: 2.13.4
   koa-body: 5.0.0
@@ -46,6 +49,7 @@ dependencies:
   vhtml: 2.2.0
 
 devDependencies:
+  '@types/glob-to-regexp': 0.4.1
   '@types/jsonfile': 6.1.0
   '@types/koa': 2.13.5
   '@types/koa-logger': 3.1.2
@@ -237,6 +241,10 @@ packages:
     dependencies:
       '@types/node': 16.10.2
     dev: false
+
+  /@types/glob-to-regexp/0.4.1:
+    resolution: {integrity: sha1-9oS8e5okaR8fgNBF27cmC/nMQVs=}
+    dev: true
 
   /@types/http-assert/1.5.3:
     resolution: {integrity: sha512-FyAOrDuQmBi8/or3ns4rwPno7/9tJTijVW6aQQjK02+kOQ8zmoNg2XJtAuQhvQcy1ASJq38wirX5//9J1EqoUA==}
@@ -934,7 +942,7 @@ packages:
     optional: true
 
   /esbuild-android-arm64/0.13.15:
-    resolution: {integrity: sha512-m602nft/XXeO8YQPUDVoHfjyRVPdPgjyyXOxZ44MK/agewFFkPa8tUo6lAzSWh5Ui5PB4KR9UIFTSBKh/RrCmg==}
+    resolution: {integrity: sha1-P8P/C6t2/jXdI3R2tdKzK7IKPUQ=}
     cpu: [arm64]
     os: [android]
     requiresBuild: true
@@ -951,7 +959,7 @@ packages:
     optional: true
 
   /esbuild-darwin-64/0.13.15:
-    resolution: {integrity: sha512-ihOQRGs2yyp7t5bArCwnvn2Atr6X4axqPpEdCFPVp7iUj4cVSdisgvEKdNR7yH3JDjW6aQDw40iQFoTqejqxvQ==}
+    resolution: {integrity: sha1-jpFpwWuvRE6s7GDQmyTRGyVajnI=}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
@@ -1019,7 +1027,7 @@ packages:
     optional: true
 
   /esbuild-linux-32/0.13.15:
-    resolution: {integrity: sha512-ZvTBPk0YWCLMCXiFmD5EUtB30zIPvC5Itxz0mdTu/xZBbbHJftQgLWY49wEPSn2T/TxahYCRDWun5smRa0Tu+g==}
+    resolution: {integrity: sha1-b9OfNvxm3UW2tfUVcox7vrw0Kmk=}
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
@@ -1036,7 +1044,7 @@ packages:
     optional: true
 
   /esbuild-linux-64/0.13.15:
-    resolution: {integrity: sha512-eCKzkNSLywNeQTRBxJRQ0jxRCl2YWdMB3+PkWFo2BBQYC5mISLIVIjThNtn6HUNqua1pnvgP5xX0nHbZbPj5oA==}
+    resolution: {integrity: sha1-nLjkvNdXTmeUbk7l8fHhI4a7bdM=}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
@@ -1070,7 +1078,7 @@ packages:
     optional: true
 
   /esbuild-linux-arm64/0.13.15:
-    resolution: {integrity: sha512-bYpuUlN6qYU9slzr/ltyLTR9YTBS7qUDymO8SV7kjeNext61OdmqFAzuVZom+OLW1HPHseBfJ/JfdSlx8oTUoA==}
+    resolution: {integrity: sha1-OJGqNwTsV5obktKlhhIuW2or+6E=}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
@@ -1087,7 +1095,7 @@ packages:
     optional: true
 
   /esbuild-linux-mips64le/0.13.15:
-    resolution: {integrity: sha512-KlVjIG828uFPyJkO/8gKwy9RbXhCEUeFsCGOJBepUlpa7G8/SeZgncUEz/tOOUJTcWMTmFMtdd3GElGyAtbSWg==}
+    resolution: {integrity: sha1-NrB8xHw9IeSNs7sfTZ749Grq1Pc=}
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
@@ -1104,7 +1112,7 @@ packages:
     optional: true
 
   /esbuild-linux-ppc64le/0.13.15:
-    resolution: {integrity: sha512-h6gYF+OsaqEuBjeesTBtUPw0bmiDu7eAeuc2OEH9S6mV9/jPhPdhOWzdeshb0BskRZxPhxPOjqZ+/OqLcxQwEQ==}
+    resolution: {integrity: sha1-9+a7pAuaEeudyuWwFVDqBGcO2tI=}
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
@@ -1173,7 +1181,7 @@ packages:
     optional: true
 
   /esbuild-sunos-64/0.13.15:
-    resolution: {integrity: sha512-lbivT9Bx3t1iWWrSnGyBP9ODriEvWDRiweAs69vI+miJoeKwHWOComSRukttbuzjZ8r1q0mQJ8Z7yUsDJ3hKdw==}
+    resolution: {integrity: sha1-0LZFSog3XujTlk2u/1XIXJHHzvQ=}
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
@@ -1190,7 +1198,7 @@ packages:
     optional: true
 
   /esbuild-windows-32/0.13.15:
-    resolution: {integrity: sha512-fDMEf2g3SsJ599MBr50cY5ve5lP1wyVwTe6aLJsM01KtxyKkB4UT+fc5MXQFn3RLrAIAZOG+tHC+yXObpSn7Nw==}
+    resolution: {integrity: sha1-yW0Lm7tS8zAzIlgu+OSEfFrTdac=}
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
@@ -1641,7 +1649,7 @@ packages:
     dev: true
 
   /fsevents/2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    resolution: {integrity: sha1-ilJveLj99GI7cJ4Ll1xSwkwC/Ro=}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -1693,6 +1701,10 @@ packages:
     dependencies:
       is-glob: 4.0.3
     dev: true
+
+  /glob-to-regexp/0.4.1:
+    resolution: {integrity: sha1-x1KXCHyFG5pXi9IX3VmpL1n+VG4=}
+    dev: false
 
   /glob/7.2.0:
     resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==}

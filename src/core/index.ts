@@ -4,6 +4,7 @@ import logger from 'koa-logger'
 import bodyParser from 'koa-body'
 import fileServe from 'koa-static'
 import EventRegistry from './EventRegistry'
+import GlobToRegExp from 'glob-to-regexp'
 
 export interface PageEntry {
   (props: {ctx: Koa.ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>} & { children?: any[] }): string | Promise<string>
@@ -36,7 +37,7 @@ export default function createApp (routes: Route[], options?: Options) {
   // ======================== page loader ========================
   router.get('/(.*)', async (ctx, next) => {
     const { path } = ctx
-    const route = routes.find(route => route.path === path)
+    const route = routes.find(route => GlobToRegExp(route.path, { extended: true }).test(path))
     if (route?.redirect) {
       ctx.redirect(route.redirect)
     } else if (route?.component) {

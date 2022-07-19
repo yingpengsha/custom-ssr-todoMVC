@@ -18,6 +18,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@types/glob-to-regexp": "^0.4.1",
     "@types/jsonfile": "^6.1.0",
     "@types/koa": "^2.13.5",
     "@types/koa-logger": "^3.1.2",
@@ -43,6 +44,7 @@
     "vitest": "^0.1.13"
   },
   "dependencies": {
+    "glob-to-regexp": "^0.4.1",
     "jsonfile": "^6.1.0",
     "koa": "^2.13.4",
     "koa-body": "^5.0.0",

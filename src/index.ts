@@ -7,15 +7,7 @@ createApp([
     redirect: '/all'
   },
   {
-    path: '/all',
-    component: TodoView
-  },
-  {
-    path: '/active',
-    component: TodoView
-  },
-  {
-    path: '/completed',
+    path: '/{all,active,completed}',
     component: TodoView
   }
 ])
