@@ -1,7 +1,7 @@
-import h from 'vhtml'
+import { ReactNode } from 'react'
 import EventRegistry, { ServerEvent } from './EventRegistry'
 
-const Form = (props: { children: any[], method: string, submit: ServerEvent, class?: string }) => {
+const Form: React.FC<{ children: ReactNode, method: string, submit: ServerEvent, className?: string}> = (props) => {
   const { submit, children, method } = props
   let action = '#'
   if (submit && method) {

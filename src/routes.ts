@@ -1,6 +1,6 @@
-import createApp from 'core'
+import { Route } from 'core'
 
-createApp([
+export default [
   {
     path: '/',
     redirect: '/all'
@@ -9,4 +9,4 @@ createApp([
     path: '/{all,active,completed}',
     component: () => import('./views')
   }
-])
+] as Route[]
