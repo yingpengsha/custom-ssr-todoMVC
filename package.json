@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "dev": "tsx watch ./src/index.ts",
+    "dev": "tsx watch ./src/core/index.ts",
     "test:dev": "vitest --passWithNoTests",
     "test": "vitest run --passWithNoTests",
     "lint": "eslint \"**/*.{js,ts,md,json,yml}\"",
