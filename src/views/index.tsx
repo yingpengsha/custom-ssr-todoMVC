@@ -1,3 +1,4 @@
+import React from 'react'
 import Form from 'core/Form'
 import { ServerEvent } from 'core/EventRegistry'
 import Todo, { TodoItem } from 'models'
@@ -6,7 +7,7 @@ import TodoList from './TodoList'
 import { useLoaderData } from 'core/renderer/useLoaderData'
 import { ContextType } from 'core'
 
-const Actions: Record<string, ServerEvent> = {
+export const actions: Record<string, ServerEvent> = {
   Add: async (ctx) => {
     await Todo.add(ctx.request.body)
   },
@@ -15,7 +16,7 @@ const Actions: Record<string, ServerEvent> = {
   }
 }
 
-const Loader = async (ctx: ContextType) => {
+export const loader = async (ctx: ContextType) => {
   const { path } = ctx
 
   // ======================== leftCount ========================
@@ -41,12 +42,12 @@ const Loader = async (ctx: ContextType) => {
 }
 
 const TodoView: React.FC = () => {
-  const { leftCount, path, todoList } = useLoaderData<typeof Loader>()
+  const { leftCount, path, todoList } = useLoaderData<typeof loader>()
   return <>
     <section className="todoapp">
       <header className="header">
         <h1>todos</h1>
-        <Form submit={Actions.Add} method="post">
+        <Form submit={actions.Add} method="post">
           <input name="name" className="new-todo" placeholder="What needs to be done?" autoFocus={true} />
         </Form>
       </header>
@@ -56,14 +57,14 @@ const TodoView: React.FC = () => {
         <TodoList todoList={todoList} />
       </section>
       <footer className="footer">
-        <span className="todo-count"><strong>{leftCount.toString()}</strong> item left</span>
+        <span className="todo-count"><strong>{leftCount?.toString()}</strong> item left</span>
         <ul className="filters">
           {['all', 'active', 'completed'].map(key =>
-            <li>
+            <li key={key}>
               <a className={path === `/${key}` ? 'selected' : ''} href="/">{key[0].toUpperCase() + key.slice(1)}</a>
             </li>)}
         </ul>
-        <Form method="post" submit={Actions.ClearCompleted} className={leftCount === 0 ? 'hidden' : ''}>
+        <Form method="post" submit={actions.ClearCompleted} className={leftCount === 0 ? 'hidden' : ''}>
           <button type={'submit' as const} className="clear-completed">Clear completed</button>
         </Form>
       </footer>

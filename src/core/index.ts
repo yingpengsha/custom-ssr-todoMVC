@@ -6,13 +6,15 @@ import fileServe from 'koa-static'
 import EventRegistry from './EventRegistry'
 import GlobToRegExp from 'glob-to-regexp'
 import routes from 'routes'
+import { ModuleType } from './renderer/ComponentLoader'
+import genServerSideApp from './renderer/ServerSideApp'
 
 export type ContextType = Koa.ParameterizedContext<any, Router.IRouterParamContext<any, {}>, any>
 
 export interface Route {
   path: string
   redirect?: string
-  component?: any
+  component?: () => Promise<ModuleType>
 }
 
 export interface Options {
@@ -39,7 +41,10 @@ router.get('/(.*)', async (ctx, next) => {
   if (route?.redirect) {
     ctx.redirect(route.redirect)
   } else if (route?.component) {
-    ctx.body = await route.component({ ctx })
+    const componentModule = await route.component()
+    const data = await componentModule.loader(ctx)
+    console.log(data)
+    ctx.body = await genServerSideApp(componentModule.default, data)
   }
   next()
 })

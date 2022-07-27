@@ -14,7 +14,7 @@ async function init () {
   const route = routes.find(route => GlobToRegExp(route.path, { extended: true }).test(window.location.pathname))
   await route?.component()
 
-  ReactDOM.render(<Template>{createElement(ReactComponentLoader(route?.component))}</Template>, document)
+  ReactDOM.render(<Template><div id="app">{createElement(ReactComponentLoader(route?.component))}</div></Template>, document.body)
 }
 
 init()

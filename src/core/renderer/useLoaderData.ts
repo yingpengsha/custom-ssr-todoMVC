@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 
-export const RouteDataContext = createContext(null)
+export const RouteDataContext = createContext<any>(null)
 
 export const useLoaderData = <Loader extends (...args: any) => any>(): Awaited<ReturnType<Loader>> => {
   const context = useContext(RouteDataContext)

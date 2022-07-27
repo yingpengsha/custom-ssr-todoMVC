@@ -1,3 +1,5 @@
+import React from 'react'
+
 const Template: React.FC<{children: React.ReactNode}> = (props) => {
   const { children } = props
   return <html lang="en">

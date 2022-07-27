@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import EventRegistry, { ServerEvent } from './EventRegistry'
 
 const Form: React.FC<{ children: ReactNode, method: string, submit: ServerEvent, className?: string}> = (props) => {
