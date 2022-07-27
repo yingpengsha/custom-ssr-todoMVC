@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "tsx watch ./src/core/index.ts",
+    "dev:client": "tsup --watch --sourcemap --env.NODE_ENV development",
     "test:dev": "vitest --passWithNoTests",
     "test": "vitest run --passWithNoTests",
     "lint": "eslint \"**/*.{js,ts,md,json,yml}\"",

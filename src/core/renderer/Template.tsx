@@ -14,6 +14,7 @@ const Template: React.FC<{children: React.ReactNode}> = (props) => {
     <body>
       {children}
     </body>
+    <script src="/dist/ClientSideApp.global.js"></script>
     <script src="/static/scripts/EditModeToggle.js"></script>
   </html>
 }
